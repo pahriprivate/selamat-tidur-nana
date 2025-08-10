@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tema Bucin - Untuk Nana</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Pacifico&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg1: #0f1724;
+  --bg2: #1b1031;
+  --accent: #ff6b9a;
+  --accent2: #ffb3c6;
+  --glass: rgba(255,255,255,0.06);
+  --glass-2: rgba(255,255,255,0.03);
+  --text: #e8f0ff;
+}
+*{box-sizing:border-box}
+html, body {
+  margin: 0;
+  font-family: 'Poppins', system-ui, Arial;
+  background: radial-gradient(1200px 500px at 10% 10%, rgba(255,107,154,0.06), transparent),
+              radial-gradient(900px 400px at 90% 80%, rgba(255,179,198,0.04), transparent),
+              linear-gradient(160deg, var(--bg1), var(--bg2));
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  padding: 16px;
+  overflow-y: auto;
+  min-height: 100vh;
+}
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hearts {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+.heart {
+  position: absolute;
+  width: 18px; height: 18px;
+  transform: translate(-50%,-50%) rotate(-45deg);
+  left: 50%;
+  bottom: -50px;
+  opacity: 0.95;
+  animation: floatUp linear infinite;
+}
+.heart:before, .heart:after{
+  content: "";
+  position: absolute;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.heart:after{
+  left: 9px;
+  background: var(--accent2);
+}
+@keyframes floatUp {
+  0% {transform: translate(-50%, 0) rotate(-45deg) scale(0.85); opacity: 0;}
+  10% {opacity: 1}
+  50% {transform: translate(calc(-50% + var(--drift)), -50vh) rotate(-45deg) scale(1);}
+  100% {transform: translate(calc(-50% + calc(var(--drift) * 1.6)), -120vh) rotate(-45deg) scale(1.1); opacity: 0;}
+}
+
+.card {
+  position: relative;
+  z-index: 2;
+  width: min(880px, 96vw);
+  background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: 0 8px 30px rgba(3,6,23,0.7), inset 0 1px 0 rgba(255,255,255,0.02);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  align-items: stretch;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.03);
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.profile {
+  padding: 18px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, var(--glass), var(--glass-2));
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: center;
+}
+.avatar {
+  width: 120px; height: 120px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Pacifico'; font-size: 40px; color: white;
+  background: linear-gradient(135deg, var(--accent), #ff9db5);
+  box-shadow: 0 8px 30px rgba(255,107,154,0.16);
+  border: 3px solid rgba(255,255,255,0.06);
+}
+.name {font-weight: 700; font-size: 22px;}
+.role {font-size: 13px; color: rgba(255,255,255,0.65)}
+.neon {
+  margin-top: 6px;
+  font-family: 'Pacifico'; font-size: 28px;
+  color: var(--accent2);
+  text-align: center;
+  text-shadow:
+    0 0 6px rgba(255,107,154,0.6),
+    0 0 18px rgba(255,179,198,0.12);
+}
+.stats {
+  margin-top: auto;
+  width: 100%;
+  display: flex; gap: 8px; justify-content: space-between;
+}
+.stat {
+  flex: 1; background: rgba(255,255,255,0.02);
+  padding: 10px; border-radius: 8px; text-align: center; font-size: 13px;
+}
+.stat b {display: block; font-size: 18px; margin-bottom: 6px; color: var(--accent)}
+
+.right {
+  display: flex; flex-direction: column; gap: 14px; padding: 10px 4px;
+}
+.header {display: flex; align-items: center; justify-content: space-between;}
+.title {font-size: 18px; font-weight: 600}
+.subtitle {font-size: 13px; color: rgba(255,255,255,0.65)}
+
+.chat-window {
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));
+  border-radius: 12px; padding: 14px; flex: 1; overflow: auto;
+  display: flex; flex-direction: column; gap: 12px;
+  border: 1px solid rgba(255,255,255,0.02);
+  min-height: 200px;
+}
+.bubble {
+  max-width: 78%;
+  padding: 10px 12px; border-radius: 12px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  font-size: 14px;
+}
+.bubble.me {
+  margin-left: auto;
+  background: linear-gradient(180deg, rgba(255,107,154,0.14), rgba(255,179,198,0.06));
+  color: #fff;
+  border: 1px solid rgba(255,107,154,0.09);
+}
+.meta {font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 6px}
+
+.typing {
+  display: inline-block; height: 10px; width: 46px; border-radius: 8px;
+  background: rgba(255,255,255,0.06); position: relative;
+}
+.dot {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.8);
+  animation: blink 1s infinite;
+}
+.dot:nth-child(2){left: 20px; animation-delay: 0.18s}
+.dot:nth-child(3){left: 34px; animation-delay: 0.36s}
+@keyframes blink {
+  0%{transform:translateY(-50%) scale(0.6);opacity:0.2}
+  50%{transform:translateY(-50%) scale(1);opacity:1}
+  100%{transform:translateY(-50%) scale(0.6);opacity:0.2}
+}
+
+.composer {
+  display: flex; gap: 10px; align-items: center; padding-top: 6px;
+}
+.input {
+  flex: 1; padding: 10px 12px; border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.04);
+  background: transparent; color: var(--text); font-size: 14px;
+}
+.btn {
+  padding: 10px 14px; border-radius: 10px; border: 0;
+  background: linear-gradient(90deg, var(--accent), #ff9db5);
+  color: white; font-weight: 600; cursor: pointer; font-size: 14px;
+}
+.btn:active {transform: translateY(1px)}
+
+@media (min-width: 821px) {
+  .card {grid-template-columns: 320px 1fr;}
+}
+</style>
+</head>
+<body>
+<div class="hearts" id="hearts"></div>
+
+<div class="card">
+  <div class="profile">
+    <div class="avatar" id="avatar">nana</div>
+    <div class="name">Nana</div>
+    <div class="role">Pacarku yang manis 💕</div>
+    <div class="neon">BUCIN MODE ON</div>
+    <div class="stats">
+      <div class="stat"><b>24/7</b>Sayang</div>
+      <div class="stat"><b>∞</b>Mimpi</div>
+    </div>
+  </div>
+
+  <div class="right">
+    <div class="header">
+      <div>
+        <div class="title">Selamat Tidur, Nana 🌙</div>
+        <div class="subtitle">Pilih template atau tulis pesanmu sendiri</div>
+      </div>
+    </div>
+
+    <div class="chat-window" id="chat">
+      <div class="bubble" id="welcome">Hai sayang! Aku di sini buat nemenin sampai kamu bobo.</div>
+    </div>
+
+    <div class="composer">
+      <select id="preset" class="input" style="max-width:42%;">
+        <option value="selamat">-- Pilih Template --</option>
+        <option value="romantis">Romantis</option>
+        <option value="lucu">Lucu</option>
+        <option value="puitis">Puitis</option>
+      </select>
+      <input id="message" class="input" placeholder="Tulis ucapanmu..." />
+      <button class="btn" id="send">Kirim</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const templates = {
+  romantis: 'Selamat tidur, Nana cintaku 🌙💤\nSemoga mimpi indah dan kamu bangun dengan senyum dari aku ❤️',
+  lucu: 'Nanaaa 😴💕 ayo bobo cepat, nanti keburu ayam bangun duluan 🐔',
+  puitis: 'Di antara bintang dan malam, ada namamu yang paling bersinar ✨'
+};
+const preset = document.getElementById('preset');
+const messageInput = document.getElementById('message');
+const sendBtn = document.getElementById('send');
+const chat = document.getElementById('chat');
+
+preset.addEventListener('change', () => {
+  messageInput.value = templates[preset.value] || '';
+});
+
+function addBubble(text, who='me'){
+  const wrap = document.createElement('div');
+  const bubble = document.createElement('div');
+  bubble.className = 'bubble ' + (who==='me'?'me':'');
+  bubble.innerHTML = text.replace(/\n/g,'<br>');
+  wrap.appendChild(bubble);
+  chat.appendChild(wrap);
+  chat.scrollTop = chat.scrollHeight;
+}
+
+sendBtn.addEventListener('click', () => {
+  const txt = messageInput.value.trim();
+  if(!txt) return;
+  addBubble(txt, 'me');
+  messageInput.value = '';
+  preset.value = 'selamat';
+});
+
+function spawnHeart(){
+  const h = document.createElement('div');
+  h.className = 'heart';
+  h.style.left = (Math.random()*100) + '%';
+  h.style.setProperty('--drift', (Math.random()*120-60)+'px');
+  document.getElementById('hearts').appendChild(h);
+  setTimeout(()=>h.remove(), 7000);
+}
+setInterval(spawnHeart, 900);
+</script>
+</body>
+</html>
